@@ -1,3 +1,8 @@
+var choise=prompt("1.easy,2.medium, 3.hard");
+var time;
+if(choise==1) time=150;
+if(choise==2) time=125;
+if(choise==3) time=50;
 const cvs=document.getElementById("snake");
 const ctx=cvs.getContext("2d");
 
@@ -61,14 +66,15 @@ function collision(head,array){
     for(let i=0;i<array.length; i++){
         if(head.x == array[i].x && head.y ==array[i].y){
             
-            console.log("ye true bhi chalata");
+            // console.log("ye true bhi chalata");
             return true;
         }
-        console.log("ye to false chala");
-        return false;
     }
-
+        // console.log("ye to false chala");
+        return false;
 }
+
+
 //draw everything on the canvas
 function draw(){
     ctx.drawImage(ground,0,0);
@@ -123,34 +129,12 @@ function draw(){
             dead.play();
         }
     
-
-    
-
-    
     snake.unshift(newHead);
 
     ctx.fillStyle="white";
     ctx.font="45px Changa one";
     ctx.fillText(score,2*box,1.6*box);
-    console.log("chala");
+    // console.log("chala");
 }
 
-let game = setInterval(draw,100);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+let game = setInterval(draw,time);
