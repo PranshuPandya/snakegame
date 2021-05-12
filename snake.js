@@ -12,6 +12,21 @@ ground.src ="img/ground.png";
 const foodImg = new Image();
 foodImg.src="img/food.png";
 
+//add audio
+const dead = new Audio();
+const eat = new Audio();
+const up = new Audio();
+const left = new Audio();
+const right = new Audio();
+const down = new Audio();
+
+dead.src = "audio/dead.mp3"
+down.src = "audio/down.mp3"
+eat.src = "audio/eat.mp3"
+up.src = "audio/up.mp3"
+left.src = "audio/left.mp3"
+right.src = "audio/right.mp3"
+up.src = "audio/up.mp3"
 //create the snake
 
 let snake=[];
@@ -34,10 +49,10 @@ let d;
 document.addEventListener("keydown",direction);
 
 function direction(event){
-    if(event.keyCode==37 && d!="right") {d="left";}
-    else if(event.keyCode==38 && d!="down") {d="up";}
-    else if(event.keyCode==39 && d!="left") {d="right";}
-    else if(event.keyCode==40 && d!="up") {d="down";}
+    if(event.keyCode==37 && d!="right") {d="left";left.play();}
+    else if(event.keyCode==38 && d!="down") {d="up";up.play();}
+    else if(event.keyCode==39 && d!="left") {d="right";right.play();}
+    else if(event.keyCode==40 && d!="up") {d="down";down.play();}
 }
 
 
@@ -91,6 +106,7 @@ function draw(){
             x: Math.floor(Math.random()*17+1) * box,
             y: Math.floor(Math.random()*15+3) * box
         }
+        eat.play();
     }else{
     //remove the tail
     snake.pop();
@@ -104,6 +120,7 @@ function draw(){
     if(snakeX < box || snakeX >17*box || snakeY < 3*box 
         || snakeY > 17*box || collision(newHead,snake)){
             clearInterval(game);
+            dead.play();
         }
     
 
